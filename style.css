@@ -1,0 +1,148 @@
+/* ----- Base ----- */
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #0f172a;            /* slate-900 */
+  --panel: #111827;         /* gray-900 */
+  --panel-2: #1f2937;       /* gray-800 */
+  --text: #e5e7eb;          /* gray-200 */
+  --muted: #9ca3af;         /* gray-400 */
+  --accent: #22d3ee;        /* cyan-400 */
+  --accent-2: #38bdf8;      /* sky-400 */
+  --danger: #ef4444;        /* red-500 */
+  --success: #22c55e;       /* green-500 */
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(1200px 600px at 50% -10%, #1e293b 0%, var(--bg) 60%);
+  color: var(--text);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  display: grid;
+  place-items: center;
+}
+
+/* ----- Layout ----- */
+.wrapper {
+  width: min(92vw, 760px);
+  display: grid;
+  gap: 16px;
+}
+
+.title {
+  margin: 8px 0 0;
+  font-weight: 800;
+  letter-spacing: .5px;
+  text-align: center;
+}
+
+/* ----- Controls ----- */
+.controls {
+  display: grid;
+  gap: 10px;
+  background: linear-gradient(180deg, var(--panel), var(--panel-2));
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: 16px;
+  padding: 12px;
+  box-shadow: var(--shadow);
+}
+
+.controls > * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.scoreboard {
+  font-weight: 700;
+}
+
+/* ----- Buttons ----- */
+.btn {
+  appearance: none;
+  border: 1px solid rgba(255,255,255,.12);
+  background: #0b1220;
+  color: var(--text);
+  padding: 8px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform .06s ease, background .2s ease, border-color .2s ease;
+  font-weight: 600;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  background: #0e1526;
+  border-color: rgba(255,255,255,.22);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn.primary {
+  background: linear-gradient(180deg, var(--accent), var(--accent-2));
+  color: #051320;
+  border: none;
+}
+
+.btn.primary:hover {
+  filter: brightness(1.05);
+}
+
+.btn[data-level="easy"]  { border-color: rgba(34,197,94,.6); }
+.btn[data-level="medium"]{ border-color: rgba(234,179,8,.6); }
+.btn[data-level="hard"]  { border-color: rgba(239,68,68,.6); }
+
+/* Remove pesky focus re-clicks via Space */
+button:focus-visible {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 2px;
+}
+
+/* ----- Game Canvas Container ----- */
+.game-container {
+  background: #70c5ce; /* sky-like; your JS also paints background each frame */
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  padding: 8px; /* keeps canvas from touching rounded corners */
+}
+
+/* Canvas gets fixed size in JS; keep it crisp on page */
+#gameCanvas {
+  display: block;
+  width: 400px;
+  height: 500px;
+  image-rendering: pixelated;
+  background: transparent; /* JS draws the bg */
+  border-radius: 10px;
+}
+
+/* ----- Misc ----- */
+.hint {
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+  margin: 2px 0 10px;
+}
+
+/* Responsive: shrink canvas wrapper on small screens (JS still uses 400x500 internal) */
+@media (max-width: 460px) {
+  #gameCanvas {
+    width: 100%;
+    height: auto; /* maintains aspect visually, internal draw size unchanged */
+  }
+}

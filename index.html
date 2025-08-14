@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Flappy Bird</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="wrapper">
+    <h1 class="title">Flappy Bird</h1>
+
+    <div class="controls">
+      <button id="startBtn" class="btn primary">Start Game</button>
+      <div class="difficulty">
+        <span>Difficulty:</span>
+        <button class="btn" data-level="easy">Easy</button>
+        <button class="btn" data-level="medium">Medium</button>
+        <button class="btn" data-level="hard">Hard</button>
+      </div>
+      <div class="scoreboard">Score: <span class="score">0</span></div>
+    </div>
+
+    <div class="game-container">
+      <canvas id="gameCanvas"></canvas>
+      <!-- The "Game Over" screen is drawn by JS on the canvas itself -->
+    </div>
+
+    <p class="hint">Press <kbd>Space</kbd> to flap. Choose a difficulty, then press Start.</p>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
